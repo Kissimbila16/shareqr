@@ -1,0 +1,14 @@
+{
+  "name": "speech",
+  "version": "1.0.0",
+  "description": "domingos kissimbila fazendo speech",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "speak"
+  ],
+  "author": "domingos kissimbila",
+  "license": "ISC"
+}

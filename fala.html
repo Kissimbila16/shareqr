@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leitor de texto</title>
+    <link
+      href="
+https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css
+"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://bulma.io/favicons/favicon-32x32.png?v=201701041855"
+      sizes="32x32"
+    />
+  </head>
+  <style>
+    * {
+      font-family: monospace !important;
+    }
+  </style>
+  <body>
+    <h1
+      class="has-text-centered"
+      style="margin-top: 10%; padding: 2%; font-size: 32px"
+    >
+      Leitor de Palavras
+    </h1>
+    <div class="has-text-centered">
+      <input
+        type="text"
+        name=""
+        id="valor"
+        class="control"
+        style="width: 40%; height: 60px; margin: 1%"
+        placeholder="Insira o texto que deseja Ler"
+      />
+      <br />
+      <input
+        type="button"
+        onclick="fala();"
+        value="Iniciar  Leitura"
+        class="control"
+        style="width: 20%; height: 40px; margin: 1%; font-weight: 500"
+        placeholder="Insira o texto que deseja Ler"
+      />
+    </div>
+
+    <!-- 
+    <ul id="lista-frutas">
+        
+    </ul>
+    <script>
+      const frutas = ["Maçã", "Banana", "Uva", "Laranja", "kissimbila"];
+      const listaFrutas = document.getElementById("lista-frutas");
+      frutas.forEach((fruta) => {
+        const li = document.createElement("li");
+        li.textContent = fruta;
+        listaFrutas.appendChild(li);
+      });
+       
+    </script> -->
+
+    <script>
+      var InputText = document.getElementById("valor");
+      function fala() {
+        if ("speechSynthesis" in window) {
+            alert("API DISPONIVEL");
+          if (InputText) {
+            console.log(InputText.length);
+            ler(InputText.value);
+          }
+        } else {
+          alert("API NAO DISPONIVEL");
+        }
+      }
+
+      function ler(msg) {
+        var mensagem = new SpeechSynthesisUtterance();
+        mensagem.text = msg;
+        //   mensagem.voice = vozes[1];
+        mensagem.lang = "pt-BR";
+        mensagem.volume = 1;
+        //   mensagem.rate = 2;
+        mensagem.pitch = 0;
+        speechSynthesis.speak(mensagem);
+      }
+      InputText.value = "";
+    </script>
+    <footer>
+      <h1
+        class="has-text-centered"
+        style="margin-top: 10%; padding: 2%; font-size: 24px"
+      >
+        Domingos JK
+      </h1>
+    </footer>
+  </body>
+</html>
