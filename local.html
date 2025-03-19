@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js"
+      integrity="sha512-is1ls2rgwpFZyixqKFEExPHVUUL+pPkBEPw47s/6NDQ4n1m6T/ySeDW3p54jp45z2EJ0RSOgilqee1WhtelXfA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <style>
+
+    .qrspace{
+display: flex;
+width: auto;
+justify-content: center;
+align-items: center;
+margin-top: 15%;
+    }
+h2{
+  font-family:monospace;
+  font-size: 32px;
+  text-align: center;
+  color: white;
+}
+
+#qrcode{
+  width: 100%;
+  height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: gradientAnimation 5s ease infinite;
+    background: linear-gradient(45deg, #261181, #0b2f44, #4e77c5);
+    background-size: 300% 300%;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+button{
+  height: 40px;
+  width: 185px;
+  border-radius: 4px;
+  border: none!important;
+}
+  </style>
+  <body>
+<section class="content">
+  <button onclick="getLocal()" id="btn">Pegar Localização</button>
+  <div class="qrspace" id="text">
+<h2 class="">
+  Qrcode Mongoa
+</h2>
+   <div class="grid">
+    <div id="qrcode"></div>
+   </div>
+  </div>
+</section>
+    <script>
+        document.getElementById("text").style.display="none";
+
+      function getLocal() {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              const local = 'https://maps.app.goo.gl/iR7wcC5z3yGdPMij6';
+              setQrcode(local);
+            },
+            function (error) {
+              alert(`Erro ao obter localização: ${error.message}`);
+            }
+          );
+        } else {
+          alert("Geolocalização não é suportada pelo seu navegador.");
+        }
+      }
+
+      var qrcode,is=false;
+      function setQrcode(data) {
+
+         qrcode = new QRCode("qrcode", {
+          text: data,
+          width: 400,
+          height: 400,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+        document.getElementById("text").style.display="grid";
+        document.getElementById("btn").style.display="none";
+
+  
+      }
+    
+
+    </script>
+  </body>
+</html>
