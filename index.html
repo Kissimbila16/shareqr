@@ -64,7 +64,7 @@ button{
   </style>
   <body>
 <section class="content">
-  <button onclick="getLocal()" id="btn">Pegar Localização</button>
+
   <div class="qrspace" id="text">
 <h2 class="">
   Qrcode Mongoa
@@ -75,25 +75,10 @@ button{
   </div>
 </section>
     <script>
-        document.getElementById("text").style.display="none";
-
-      function getLocal() {
-        if ("geolocation" in navigator) {
-          navigator.geolocation.getCurrentPosition(
-            function (position) {
-              const latitude = position.coords.latitude;
-              const longitude = position.coords.longitude;
-              const local = 'https://www.google.com/maps/place/7%C2%B051'+'29.4%22S+13%C2%B008'+'35.9%22E/@-7.8581553,13.1433163,17z/data=!4m4!3m3!8m2!3d-7.8581553!4d13.1433163';
-              setQrcode(local);
-            },
-            function (error) {
-              alert(`Erro ao obter localização: ${error.message}`);
-            }
-          );
-        } else {
-          alert("Geolocalização não é suportada pelo seu navegador.");
-        }
-      }
+      getLocal();
+      const local = 'https://www.google.com/maps/place/7%C2%B051'+'29.4%22S+13%C2%B008'+'35.9%22E/@-7.8581553,13.1433163,17z/data=!4m4!3m3!8m2!3d-7.8581553!4d13.1433163';    
+      setQrcode(local);
+      document.getElementById("text").style.display="none";
 
       var qrcode,is=false;
       function setQrcode(data) {
@@ -109,7 +94,6 @@ button{
         document.getElementById("text").style.display="grid";
         document.getElementById("btn").style.display="none";
 
-  
       }
     
 
